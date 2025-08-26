@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginners Driving Exam Test</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        @keyframes blink-blue-green {
+            0%, 100% { background-color: #3B82F6; } /* Tailwind: blue-500 */
+            50% { background-color: #10B981; } /* Tailwind: green-500 */
+        }
+        .blinking-button {
+            animation: blink-blue-green 1.5s infinite;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 90%;
+            width: 700px;
+            text-align: center;
+            margin: auto;
+        }
+        .correct-icon::before {
+            content: "\f058"; /* Font Awesome solid circle check */
+            color: #10b981;
+        }
+        .incorrect-icon::before {
+            content: "\f057"; /* Font Awesome solid circle times */
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl sm:text-4xl font-bold">Beginners Driving Exam Test</h1>
+            <div class="flex items-center gap-2 text-xl font-bold">
+                <i class="far fa-clock"></i>
+                <span id="countdown-timer">10:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 mt-8 mb-20">
+
+        <!-- Initial Instructions Section -->
+        <div id="instructions-section" class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4">Exam Instructions</h2>
+            <p class="text-gray-700 leading-relaxed mb-6">
+                Welcome to the driving exam. You have 10 minutes to complete 20 multiple-choice questions. Your final score will be graded out of 100%. Once you click 'Attempt Now', the timer will begin. Good luck!
+            </p>
+            <button id="start-button" class="py-4 px-8 rounded-full text-white font-bold text-lg blinking-button shadow-lg transition-all duration-300 hover:scale-105">
+                Attempt Now
+            </button>
+        </div>
+
+        <!-- Question Section (Initially Hidden) -->
+        <div id="quiz-section" class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto hidden">
+            <div id="question-area">
+                <p id="question-text" class="text-2xl font-semibold mb-6"></p>
+                <div id="options-container" class="space-y-4">
+                    <!-- Options will be dynamically added here -->
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="back-button" class="bg-gray-400 text-white font-semibold py-2 px-6 rounded-md hover:bg-gray-500 transition-colors">
+                    Back
+                </button>
+                <button id="next-button" class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-indigo-700 transition-colors">
+                    Next
+                </button>
+            </div>
+            <div class="flex justify-center mt-8">
+                <button id="submit-button" class="bg-green-600 text-white font-bold py-3 px-8 rounded-md hover:bg-green-700 transition-colors hidden">
+                    Submit Now
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Congratulations Modal -->
+    <div id="congratulations-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-3xl font-bold text-indigo-600 mb-4">Exam Results</h2>
+            <p id="congratulations-score" class="text-2xl font-semibold mb-2"></p>
+            <p id="congratulations-recommendation" class="text-xl font-medium text-gray-700 mb-4"></p>
+        </div>
+    </div>
+
+    <!-- Final Results Modal -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="bg-gray-100 p-8 rounded-lg">
+                <h2 class="text-3xl font-bold mb-4">Driving Test Result</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <label for="full-name" class="block text-gray-700 font-semibold mb-1">Full Names</label>
+                        <input type="text" id="full-name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter your full names">
+                    </div>
+                    <div>
+                        <label for="phone-number" class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+                        <input type="tel" id="phone-number" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter your phone number">
+                    </div>
+                    <div>
+                        <p class="text-gray-700 font-semibold">Course:</p>
+                        <p id="course-name" class="bg-gray-200 p-2 rounded-md font-medium">Beginners Driving Exam Test</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 font-semibold">Your Score:</p>
+                        <p id="final-score-modal" class="bg-gray-200 p-2 rounded-md font-medium"></p>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="text-gray-700 font-semibold">Recommendation:</p>
+                    <p id="recommendation" class="bg-gray-200 p-2 rounded-md font-medium text-center"></p>
+                </div>
+                <div class="mt-6">
+                    <p class="text-gray-700 font-semibold text-center mb-2">Correct Answers</p>
+                    <div id="correct-answers-list" class="space-y-4 max-h-96 overflow-y-auto pr-2"></div>
+                </div>
+                <button id="download-button" class="bg-green-600 text-white font-bold py-3 px-8 rounded-md hover:bg-green-700 transition-colors mt-6">
+                    <i class="fas fa-download mr-2"></i> Download Result
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 text-gray-600 text-center p-4 mt-8 fixed bottom-0 left-0 w-full shadow-inner">
+        <p class="text-sm">&copy; 2024 Developed by Peter Mayende</p>
+    </footer>
+
+    <!-- JavaScript for Exam Logic -->
+    <script>
+        const quizQuestions = [
+            {
+                question: "What does a solid yellow line on your side of the center line mean?",
+                options: ["You may not pass.", "You may pass if safe to do so.", "You must stop immediately.", "You must slow down."],
+                answer: "You may not pass."
+            },
+            {
+                question: "What is the primary purpose of a 'yield' sign?",
+                options: ["To stop completely.", "To slow down and be prepared to stop if necessary.", "To speed up to merge with traffic.", "To alert drivers of a pedestrian crossing."],
+                answer: "To slow down and be prepared to stop if necessary."
+            },
+            {
+                question: "When should you use your vehicle's high beams?",
+                options: ["When driving in heavy city traffic.", "In fog, rain, or snow.", "On unlit roads at night when no other vehicles are nearby.", "When following another vehicle closely."],
+                answer: "On unlit roads at night when no other vehicles are nearby."
+            },
+            {
+                question: "What does a flashing red traffic light mean?",
+                options: ["Proceed with caution.", "Stop and then proceed when it is safe.", "Slow down and be prepared to stop.", "The signal is malfunctioning."],
+                answer: "Stop and then proceed when it is safe."
+            },
+            {
+                question: "What should you do if your brakes fail?",
+                options: ["Turn off the engine.", "Pump the brake pedal rapidly.", "Immediately put the car in reverse.", "Accelerate to the nearest garage."],
+                answer: "Pump the brake pedal rapidly."
+            },
+            {
+                question: "What is the recommended following distance under normal conditions?",
+                options: ["One second.", "Two seconds.", "Three seconds.", "Four seconds."],
+                answer: "Three seconds."
+            },
+            {
+                question: "What does this road sign mean?",
+                image: "https://placehold.co/300x150/FFF/000?text=Slippery+When+Wet",
+                options: ["Road is wet ahead.", "Warning: Slippery when wet.", "No passing zone.", "Dangerous curve ahead."],
+                answer: "Warning: Slippery when wet."
+            },
+            {
+                question: "When driving in fog, you should use your:",
+                options: ["High beams.", "Low beams.", "Parking lights.", "Hazard lights."],
+                answer: "Low beams."
+            },
+            {
+                question: "What is the meaning of a solid white line on the road?",
+                options: ["You can change lanes.", "It separates traffic moving in the same direction.", "It separates traffic moving in opposite directions.", "It indicates a parking zone."],
+                answer: "It separates traffic moving in the same direction."
+            },
+            {
+                question: "What is the legal blood alcohol content (BAC) limit for drivers?",
+                options: ["0.05%", "0.08%", "0.10%", "0.12%"],
+                answer: "0.08%"
+            },
+            {
+                question: "What is the proper hand position on the steering wheel?",
+                options: ["10 and 2 o'clock.", "9 and 3 o'clock.", "12 o'clock.", "Any position that is comfortable."],
+                answer: "9 and 3 o'clock."
+            },
+            {
+                question: "What should you do if a tire blows out while driving?",
+                options: ["Brake hard immediately.", "Hold the steering wheel firmly and slowly ease off the gas.", "Quickly steer to the side of the road.", "Turn off the engine."],
+                answer: "Hold the steering wheel firmly and slowly ease off the gas."
+            },
+            {
+                question: "A solid red light means:",
+                options: ["Stop until the light turns green.", "Slow down and prepare to stop.", "You can turn right on red.", "You can proceed with caution."],
+                answer: "Stop until the light turns green."
+            },
+            {
+                question: "What should you do when approaching a school bus with flashing red lights?",
+                options: ["Pass carefully on the right.", "Slow down and be prepared to stop.", "Stop and remain stopped until the lights stop flashing.", "Honk to alert the driver."],
+                answer: "Stop and remain stopped until the lights stop flashing."
+            },
+            {
+                question: "What does a broken white line on a multi-lane road mean?",
+                options: ["Passing is not allowed.", "You can cross it to change lanes.", "Traffic is moving in opposite directions.", "It is a no-passing zone."],
+                answer: "You can cross it to change lanes."
+            },
+            {
+                question: "When are you allowed to make a U-turn?",
+                options: ["Anytime, as long as traffic is clear.", "Only at a specific U-turn sign.", "When it's not prohibited by a sign and is safe to do so.", "U-turns are never allowed."],
+                answer: "When it's not prohibited by a sign and is safe to do so."
+            },
+            {
+                question: "What should you do if an emergency vehicle approaches with flashing lights and sirens?",
+                options: ["Speed up and get out of the way.", "Slow down and continue driving.", "Pull over to the nearest curb or edge of the road and stop.", "Turn on your hazard lights."],
+                answer: "Pull over to the nearest curb or edge of the road and stop."
+            },
+            {
+                question: "What is the purpose of ABS (Anti-lock Braking System)?",
+                options: ["To prevent the wheels from locking up during hard braking.", "To help you accelerate faster.", "To improve your vehicle's fuel efficiency.", "To make the steering wheel easier to turn."],
+                answer: "To prevent the wheels from locking up during hard braking."
+            },
+            {
+                question: "What is the correct way to handle a four-way stop?",
+                options: ["The first vehicle to arrive has the right of way.", "The last vehicle to arrive has the right of way.", "The largest vehicle has the right of way.", "Vehicles on the main road always have the right of way."],
+                answer: "The first vehicle to arrive has the right of way."
+            },
+            {
+                question: "What does this sign typically indicate?",
+                image: "https://placehold.co/300x150/FFF/000?text=Pedestrian+Crossing",
+                options: ["A school zone.", "A hospital ahead.", "A pedestrian crossing ahead.", "A children's play area."],
+                answer: "A pedestrian crossing ahead."
+            }
+        ];
+        
+        const startButton = document.getElementById('start-button');
+        const instructionsSection = document.getElementById('instructions-section');
+        const quizSection = document.getElementById('quiz-section');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-button');
+        const backButton = document.getElementById('back-button');
+        const submitButton = document.getElementById('submit-button');
+        const countdownTimer = document.getElementById('countdown-timer');
+        const congratulationsModal = document.getElementById('congratulations-modal');
+        const congratulationsScore = document.getElementById('congratulations-score');
+        const congratulationsRecommendation = document.getElementById('congratulations-recommendation');
+        const resultsModal = document.getElementById('results-modal');
+        const finalScoreModal = document.getElementById('final-score-modal');
+        const recommendationText = document.getElementById('recommendation');
+        const downloadButton = document.getElementById('download-button');
+        const fullNameInput = document.getElementById('full-name');
+        const phoneNumberInput = document.getElementById('phone-number');
+        const correctAnswersList = document.getElementById('correct-answers-list');
+
+        let shuffledQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+        let timerInterval;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        function startTimer() {
+            let timeLeft = 600; // 10 minutes in seconds
+            timerInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                countdownTimer.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleSubmit(true); // Auto-submit on timeout
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        function showQuestion() {
+            // Clear previous content
+            optionsContainer.innerHTML = '';
+            
+            const q = shuffledQuestions[currentQuestionIndex];
+            
+            // Add question number and text
+            questionText.innerHTML = `<span class="text-xl font-bold">${currentQuestionIndex + 1}.</span> ${q.question}`;
+            
+            // Add image if present
+            if (q.image) {
+                const img = document.createElement('img');
+                img.src = q.image;
+                img.classList.add('w-full', 'max-h-48', 'object-contain', 'mb-4', 'rounded-lg');
+                document.getElementById('question-area').prepend(img);
+            } else if (document.getElementById('question-area').querySelector('img')) {
+                document.getElementById('question-area').querySelector('img').remove();
+            }
+            
+            q.options.forEach(option => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('flex', 'items-center', 'space-x-4', 'p-4', 'border-2', 'rounded-md', 'cursor-pointer', 'transition-colors', 'duration-200', 'hover:bg-gray-100');
+                
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.name = `question-${currentQuestionIndex}`;
+                radioInput.value = option;
+                radioInput.classList.add('form-radio', 'h-5', 'w-5', 'text-indigo-600', 'border-gray-300', 'focus:ring-indigo-500');
+                
+                const label = document.createElement('label');
+                label.textContent = option;
+                label.classList.add('text-lg');
+                
+                optionDiv.appendChild(radioInput);
+                optionDiv.appendChild(label);
+                
+                optionDiv.addEventListener('click', () => {
+                    radioInput.checked = true;
+                    handleAnswerClick(option);
+                });
+                
+                // Set the radio button to checked if the user has already answered
+                if (userAnswers[currentQuestionIndex] === option) {
+                    radioInput.checked = true;
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Show/hide buttons based on progress
+            backButton.style.display = currentQuestionIndex > 0 ? 'block' : 'block';
+            nextButton.style.display = currentQuestionIndex < shuffledQuestions.length - 1 ? 'block' : 'none';
+            submitButton.style.display = (currentQuestionIndex === shuffledQuestions.length - 1 && userAnswers[currentQuestionIndex] !== null) ? 'block' : 'none';
+        }
+        
+        function handleAnswerClick(selectedOption) {
+            const q = shuffledQuestions[currentQuestionIndex];
+            
+            // Check if the user's answer is correct and update score
+            const isCorrect = selectedOption === q.answer;
+            if (userAnswers[currentQuestionIndex] === null) {
+                if (isCorrect) score++;
+            } else {
+                const wasCorrect = userAnswers[currentQuestionIndex] === q.answer;
+                if (isCorrect && !wasCorrect) score++;
+                if (!isCorrect && wasCorrect) score--;
+            }
+            
+            userAnswers[currentQuestionIndex] = selectedOption;
+            
+            // Show submit button if on the last question and an answer is selected
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                submitButton.style.display = 'block';
+            }
+        }
+        
+        function handleSubmit(isTimeout = false) {
+            clearInterval(timerInterval);
+            const finalScorePercentage = Math.round((score / shuffledQuestions.length) * 100);
+            
+            // Determine recommendation based on score
+            let recommendation = "";
+            if (finalScorePercentage >= 80) {
+                recommendation = "Excellent! You are ready for the road.";
+            } else if (finalScorePercentage >= 50) {
+                recommendation = "Good effort. Further study is recommended.";
+            } else {
+                recommendation = "Review the rules. It is advisable to re-attempt.";
+            }
+            
+            // Update the modal content
+            congratulationsScore.textContent = `Your score is ${finalScorePercentage}%`;
+            congratulationsRecommendation.textContent = recommendation;
+            congratulationsModal.style.display = 'flex';
+            
+            // Hide congratulations modal and show results modal after 10 seconds
+            setTimeout(() => {
+                congratulationsModal.style.display = 'none';
+                resetQuiz();
+            }, 10000);
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            
+            // Show instructions, hide quiz
+            instructionsSection.classList.remove('hidden');
+            quizSection.classList.add('hidden');
+            
+            // Reset timer display
+            countdownTimer.textContent = '10:00';
+            
+            // Hide buttons
+            nextButton.style.display = 'block';
+            submitButton.style.display = 'none';
+        }
+
+        // Event Listeners
+        startButton.addEventListener('click', () => {
+            instructionsSection.classList.add('hidden');
+            quizSection.classList.remove('hidden');
+            shuffleArray(quizQuestions);
+            shuffledQuestions = quizQuestions;
+            startTimer();
+            showQuestion();
+        });
+        
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            }
+        });
+        
+        backButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        });
+        
+        submitButton.addEventListener('click', () => {
+            handleSubmit();
+        });
+        
+    </script>
+
+</body>
+</html>

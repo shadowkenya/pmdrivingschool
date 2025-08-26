@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Driving School - Your Journey to the Road Starts Here</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for 'Inter' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Style for the slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Make it cover the viewport height */
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            transition: opacity 2s ease-in-out;
+            opacity: 0;
+        }
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide-text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 2rem;
+        }
+        .slide-text {
+            animation: fadeInText 1s ease-in-out;
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Main Container -->
+    <div class="mx-auto">
+
+        <!-- Header -->
+        <header class="bg-white shadow-lg py-4">
+            <nav class="container mx-auto flex justify-between items-center px-6 md:px-12">
+<a href="#" class="flex items-center space-x-3">
+    <!-- Car Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 13l1.5-4.5A3 3 0 017.3 6h9.4a3 3 0 012.8 2.5L21 13v6a1 1 0 01-1 1h-1a1 1 0 01-1-1v-1H6v1a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM7 16a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm10 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+    </svg>
+
+    <!-- Text Logo -->
+    <span class="text-3xl font-extrabold text-gray-900">
+        PM DRIVING SCHOOL
+    </span>
+</a>
+
+
+
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                     <a href="app/index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">
+      			  Virtual Classes
+    			</a>
+    			<a href="http://shadowkenya.github.io/pmkra" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">
+    			    Road Signs
+ 				   </a>
+			<a href="login/login.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">
+    			    student Login
+ 				   </a>
+				</div>
+                <div class="md:hidden">
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2 bg-white shadow-md rounded-b-lg">
+              <a href="home.html" class="block text-gray-600 hover:text-blue-600 font-medium transition duration-300">Home</a>
+<a href="virtual-classes.html" class="block text-gray-600 hover:text-blue-600 font-medium transition duration-300">Virtual Classes</a>
+<a href="road.html" class="block text-gray-600 hover:text-blue-600 font-medium transition duration-300">Road Signs</a>
+<a href="login/login.html" class="block text-gray-600 hover:text-blue-600 font-medium transition duration-300">Student Login</a>
+
+        </header>
+
+        <!-- Full-width Slider Section -->
+        <section class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="images/d.jpg" alt="Modern driving school cars" class="slide-image">
+                <div class="slide-text-overlay">
+                    <div class="slide-text">
+                        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Drive a Modern Car</h2>
+                        <p class="text-lg md:text-xl font-light mb-6">Learn on the latest models with advanced safety features.</p>
+                     <button onclick="window.location.href='app/index.html'" 
+    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+    Book a Lesson
+</button>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="images/t.jpg" alt="Professional driving instructor" class="slide-image">
+                <div class="slide-text-overlay">
+                    <div class="slide-text">
+                        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Learn from Experts</h2>
+                        <p class="text-lg md:text-xl font-light mb-6">Our certified instructors guide you every step of the way.</p>
+    <button onclick="window.location.href='login/login.html'" 
+    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+    Login Now to explore
+</button>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="images/ttt.jpg" alt="Student passing driving test" class="slide-image">
+                <div class="slide-text-overlay">
+                    <div class="slide-text">
+                        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Pass with Confidence</h2>
+                        <p class="text-lg md:text-xl font-light mb-6">Our proven curriculum leads to a high first-time pass rate.</p><button onclick="window.location.href='app/index.html'" 
+<button onclick="window.location.href='courses.html'" 
+    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+    Explore Courses
+</button>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="virtual-classes" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6 md:px-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Our Courses</h2>
+                
+                <!-- Course Card 1 -->
+                <div class="flex flex-col md:flex-row items-center bg-white p-8 rounded-2xl shadow-xl mb-8">
+                   <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
+    <h3 class="text-2xl font-bold text-blue-600 mb-2">Beginner's Course</h3>
+    <p class="text-gray-600 mb-4">
+        Perfect for new drivers. Includes in-car instruction and a solid foundation in road theory.
+    </p>
+    <ul class="list-disc pl-5 text-gray-600 mb-4">
+        <li>✅ 20 Hours of Practical Driving Lessons</li>
+        <li>✅ 10 Hours of Classroom Road Theory</li>
+        <li>✅ Flexible Weekday & Weekend Schedules</li>
+        <li>✅ Access to Online Learning Materials</li>
+        <li>✅ Professional Certified Instructors</li>
+    </ul>
+    <p class="text-gray-800 font-semibold mb-4">
+        Duration: <span class="text-blue-600">4 Weeks</span><br>
+        Price: <span class="text-blue-600">KSH 12,000</span>
+    </p>
+    <p class="text-gray-600 mb-4">
+        Ideal for beginners who want confidence on the road and complete preparation for the driving test.
+    </p>
+    <a href="course/beginer.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-center transition duration-300">
+        Apply Now
+    </a>
+</div>
+
+                    <div class="md:w-1/2">
+                        <img src="images/st.jpg" alt="Beginner driving course" class="w-full h-auto object-cover rounded-lg">
+                    </div>
+                </div>
+                
+                <!-- Course Card 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center bg-white p-8 rounded-2xl shadow-xl mb-8">
+                <div class="md:w-1/2 md:pl-8 mb-6 md:mb-0">
+    <h3 class="text-2xl font-bold text-blue-600 mb-2">Defensive Driving</h3>
+    <p class="text-gray-600 mb-4">
+        Enhance your skills and learn to anticipate hazards for a safer driving experience.
+    </p>
+    <ul class="list-disc pl-5 text-gray-600 mb-4">
+        <li>✅ Advanced Hazard Perception Techniques</li>
+        <li>✅ Emergency Braking & Skid Control</li>
+        <li>✅ Driving in Bad Weather Conditions</li>
+        <li>✅ Strategies to Reduce Accidents & Save Fuel</li>
+        <li>✅ Certificate for Insurance Discounts</li>
+    </ul>
+    <p class="text-gray-800 font-semibold mb-4">
+        Duration: <span class="text-blue-600">2 Weeks</span><br>
+        Price: <span class="text-blue-600">KSH 10,000</span>
+    </p>
+    <p class="text-gray-600 mb-4">
+        Perfect for experienced drivers who want to master safe and smart driving techniques under all conditions.
+    </p>
+    <a href="course/defensive.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-center transition duration-300">
+        Apply Now
+    </a>
+</div>
+
+                    <div class="md:w-1/2">
+                        <img src="images/tp.jpg" alt="Defensive driving course" class="w-full h-auto object-cover rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="flex flex-col md:flex-row items-center bg-white p-8 rounded-2xl shadow-xl">
+                    <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
+    <h3 class="text-2xl font-bold text-blue-600 mb-2">Refresher Lessons</h3>
+    <p class="text-gray-600 mb-4">
+        Gained confidence or need to brush up on specific skills? These lessons are tailored just for you.
+    </p>
+    <ul class="list-disc pl-5 text-gray-600 mb-4">
+        <li>✅ Ideal for drivers returning after a long break</li>
+        <li>✅ Focus on areas you find challenging</li>
+        <li>✅ Highway, city, and parking practice</li>
+        <li>✅ Learn new traffic laws and regulations</li>
+        <li>✅ Flexible scheduling to suit your time</li>
+    </ul>
+    <p class="text-gray-800 font-semibold mb-4">
+        Duration: <span class="text-blue-600">Flexible (5–10 Hours)</span><br>
+        Price: <span class="text-blue-600">KSH 8,000</span>
+    </p>
+    <p class="text-gray-600 mb-4">
+        Perfect for drivers who want to refresh their confidence and stay updated with modern driving techniques.
+    </p>
+    <a href="course/refresher.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-center transition duration-300">
+        Apply Now
+    </a>
+</div>
+
+                    <div class="md:w-1/2">
+                        <img src="images/r.png" alt="Refresher driving lessons" class="w-full h-auto object-cover rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="theory" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 md:px-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Pricing & Packages</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Package 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-2">Basic Package</h3>
+                        <p class="text-4xl font-extrabold text-gray-900 mb-4">KSH 8,000</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2 text-left">
+                            <li>10 in-car lessons</li>
+                            <li>Free pick-up & drop-off</li>
+                            <li>Theory class access</li>
+                        </ul>
+                        <button class="bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                            Choose Plan
+                        </button>
+                    </div>
+                    <!-- Package 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105 border-4 border-blue-600">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-2">Standard Package</h3>
+                        <p class="text-4xl font-extrabold text-gray-900 mb-4">KSH 10,000</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2 text-left">
+                            <li>20 in-car lessons</li>
+                            <li>Free pick-up & drop-off</li>
+                            <li>Road test booking</li>
+                            <li>Virtual class access</li>
+                        </ul>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                            Choose Plan
+                        </button>
+                    </div>
+                    <!-- Package 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-2">Premium Package</h3>
+                        <p class="text-4xl font-extrabold text-gray-900 mb-4">KSH.18,000</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2 text-left">
+                            <li>30 in-car lessons</li>
+                            <li>Full theory course</li>
+                            <li>Road test booking</li>
+                            <li>Guaranteed pass</li>
+                        </ul>
+                        <button class="bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                            Choose Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Timer Section -->
+        <section class="py-16 md:py-24 bg-blue-600 text-white rounded-3xl mx-6 md:mx-12 shadow-xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Limited-Time Offer!</h2>
+            <p class="text-xl font-light mb-8">Special discounts expire in...</p>
+            <div class="flex justify-center space-x-4 md:space-x-8">
+                <div class="bg-blue-700 p-6 rounded-2xl shadow-lg">
+                    <div id="days" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-sm md:text-base font-medium">DAYS</div>
+                </div>
+                <div class="bg-blue-700 p-6 rounded-2xl shadow-lg">
+                    <div id="hours" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-sm md:text-base font-medium">HOURS</div>
+                </div>
+                <div class="bg-blue-700 p-6 rounded-2xl shadow-lg">
+                    <div id="minutes" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-sm md:text-base font-medium">MINUTES</div>
+                </div>
+                <div class="bg-blue-700 p-6 rounded-2xl shadow-lg">
+                    <div id="seconds" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-sm md:text-base font-medium">SECONDS</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Impressive Features Section -->
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6 md:px-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">What Makes Us Different</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center transform transition duration-300 hover:scale-105">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900">24/7 Online Booking</h3>
+                        <p class="text-gray-600">Schedule or reschedule your lessons anytime, from anywhere with our easy-to-use online portal.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center transform transition duration-300 hover:scale-105">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L12 14.75 14.25 17M12 17.5V20.5M12 3.5V6.5M7.5 12H4.5M16.5 12H19.5" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900">State-of-the-art Simulators</h3>
+                        <p class="text-gray-600">Practice parallel parking and other maneuvers in a safe, virtual environment before hitting the road.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl text-center transform transition duration-300 hover:scale-105">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12a4 4 0 100-8 4 4 0 000 8zM12 12c-3.14 0-5.6 1.4-6.4 3.5m12.8 0c-.8-2.1-3.26-3.5-6.4-3.5m0 0a4 4 0 100-8 4 4 0 000 8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900">Certified Road Safety</h3>
+                        <p class="text-gray-600">Our courses are designed around the latest road safety standards to ensure you drive responsibly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12 rounded-t-3xl shadow-xl">
+            <div class="container mx-auto px-6 md:px-12 text-center">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <div class="mb-4 md:mb-0">
+                        <h4 class="text-2xl font-bold mb-2">PM Driving School</h4>
+                        <p class="text-gray-400">&copy; 2025.All Rights Reserved.</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.774-1.63 1.572V12h2.77l-.44 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                      
+                    </div>
+                </div>
+                <div class="text-center text-gray-500 text-sm mt-4">
+                    <p>Designed By Peter Mayende and crafted with care.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Mobile Menu and Dynamic Sections -->
+    <script>
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Image Slider functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].classList.add('active');
+            setTimeout(showSlides, 10000); // Change image every 5 seconds
+        }
+
+        // Countdown Timer functionality
+        const countdownDate = new Date("Sep 30, 2025 15:37:25").getTime();
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Start the slider on window load
+        window.onload = function() {
+            showSlides();
+        };
+    </script>
+</body>
+</html>

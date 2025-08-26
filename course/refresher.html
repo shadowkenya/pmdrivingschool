@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refresher Lesson</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .section-header {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header i {
+            font-size: 2.5rem;
+            color: #6366f1;
+        }
+        .term-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .term-number {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #4b5563;
+            width: 2rem;
+            text-align: center;
+        }
+        .term-definition {
+            flex-grow: 1;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            max-width: 90%;
+        }
+        .message-box.show {
+            display: flex;
+        }
+        @keyframes blink-green-blue {
+            0%, 100% { background-color: #10B981; } /* Tailwind: green-500 */
+            50% { background-color: #3B82F6; } /* Tailwind: blue-500 */
+        }
+        .blinking-button {
+            animation: blink-green-blue 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-4xl font-bold mb-4 sm:mb-0">Refresher Lesson</h1>
+            <nav class="flex flex-col sm:flex-row gap-4">
+		 <button onclick="window.location.href='../index.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+        home page
+    </button>
+              <button onclick="window.location.href='exam/re.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+    Take Exam
+</button>
+
+                <button onclick="window.location.href='../app/index.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+    Practicals
+</button>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 mt-8">
+
+        <!-- Section 1: Introduction to Refresher Lesson -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-redo-alt"></i>
+                Refresh Your Driving Skills
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-6">
+                    Welcome to the Refresher Lesson. This course is designed to help experienced drivers review and update their knowledge of road rules, best practices, and vehicle safety. Driving regulations and technology evolve, and it's essential to keep your skills sharp to ensure safety for yourself and everyone else on the road.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Whether you're getting back on the road after a long break or simply want to stay on top of the latest information, this lesson will cover the most critical aspects of safe driving.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: Review of Key Traffic Laws -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-balance-scale"></i>
+                Review of Key Traffic Laws
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    A quick review of the most fundamental traffic laws that keep the road safe.
+                </p>
+                <div class="term-item">
+                    <span class="term-number">1.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Speed Limits</p>
+                        <p class="text-gray-600">Always obey the posted speed limits. Remember, these are a maximum, not a target. Adjust your speed for conditions like weather, traffic, and visibility.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">2.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Right of Way</p>
+                        <p class="text-gray-600">Understand the rules for yielding at intersections, four-way stops, and when merging onto highways. The basic rule is to yield to the driver on your right at an uncontrolled intersection.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">3.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Lane Discipline</p>
+                        <p class="text-gray-600">Use the left lane for passing and the right lane for cruising or slower traffic. Avoid weaving through traffic and always signal well in advance of a lane change.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Safe Driving Practices -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-shield-alt"></i>
+                Modern Safe Driving Practices
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Beyond the basics, these practices are crucial for modern-day driving.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>No Distractions:</strong> The biggest threat on the road today is distracted driving. This includes using cell phones, infotainment systems, or even talking to passengers. Give the road your full, undivided attention.</li>
+                    <li><strong>Three-Second Rule:</strong> This timeless rule is still the best way to maintain a safe following distance. In poor weather, or when driving a heavier vehicle, extend this to four seconds or more.</li>
+                    <li><strong>Check Your Blind Spots:</strong> Even with modern blind-spot monitoring systems, a quick head-check before changing lanes is the most reliable way to ensure the lane is clear.</li>
+                    <li><strong>Adjusting to Speed:</strong> Be aware of the "flow of traffic" but do not feel pressured to exceed the speed limit. Maintain a consistent speed and avoid aggressive acceleration or braking.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 4: Navigating Difficult Situations -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                Handling Difficult Situations
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Knowing how to react in these situations can prevent an accident.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Aggressive Drivers:</strong> Do not engage with drivers who are tailgating or behaving aggressively. Stay calm, and if possible, safely change lanes to let them pass.</li>
+                    <li><strong>Road Obstacles:</strong> Be prepared to react to unexpected obstacles like road debris, pedestrians, or animals. Look far ahead to give yourself time to react.</li>
+                    <li><strong>Driving at Night:</strong> Adjust your mirrors to prevent glare from headlights behind you. Avoid looking directly at oncoming headlights. Always ensure your own headlights are clean and properly aimed.</li>
+                    <li><strong>Driving in Heavy Rain:</strong> The road is most slick in the first 10-15 minutes of a storm. Be aware of **hydroplaning** and increase your following distance significantly.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Vehicle & Safety Checks -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-car-battery"></i>
+                Vehicle & Safety Checks
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    A well-maintained vehicle is a safe vehicle. Regular checks are your responsibility.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Tire Pressure and Tread:</strong> Check your tire pressure at least once a month and before any long trip. Ensure your tires have sufficient tread to maintain grip.</li>
+                    <li><strong>Fluid Levels:</strong> Regularly check your oil, coolant, brake fluid, and windshield washer fluid. These are vital for your vehicle's performance and safety.</li>
+                    <li><strong>Brakes:</strong> Listen for any grinding or squealing sounds when you brake. If your brake pedal feels "soft" or spongy, it's a sign to have them checked immediately.</li>
+                    <li><strong>Headlights and Taillights:</strong> Periodically check that all your lights are working, including turn signals and brake lights. A quick walk-around can save you from a traffic ticket and a potential accident.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: Final Reminders -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-graduation-cap"></i>
+                Final Reminders
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Stay alert, stay safe, and remember that driving is a privilege that requires constant focus and respect for others on the road.
+                </p>
+            </div>
+        </div>
+
+        <!-- Centered blinking button -->
+        <div class="flex justify-center mt-6">
+            <button onclick="openPage('practicals')" class="py-4 px-8 rounded-full text-white font-bold text-lg blinking-button shadow-lg transition-all duration-300 hover:scale-105">
+                Click here for Practicals
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Message Box for Button Clicks -->
+    <div id="message-box" class="message-box">
+        <p id="message-text" class="text-xl font-medium"></p>
+        <button onclick="closeMessageBox()" class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-indigo-700 transition-colors">
+            Close
+        </button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 text-gray-600 py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Designed by Peter Mayende</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for button functionality -->
+    <script>
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+
+        function openPage(pageName) {
+            messageText.textContent = `You clicked the '${pageName.replace('-', ' ')}' button. This would open a new page!`;
+            messageBox.classList.add('show');
+        }
+
+        function closeMessageBox() {
+            messageBox.classList.remove('show');
+        }
+    </script>
+
+</body>
+</html>

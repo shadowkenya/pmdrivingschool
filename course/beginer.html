@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner's Course</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .section-header {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header i {
+            font-size: 2.5rem;
+            color: #6366f1;
+        }
+        .term-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .term-number {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #4b5563;
+            width: 2rem;
+            text-align: center;
+        }
+        .term-definition {
+            flex-grow: 1;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            max-width: 90%;
+        }
+        .message-box.show {
+            display: flex;
+        }
+        @keyframes blink-green-blue {
+            0%, 100% { background-color: #10B981; } /* Tailwind: green-500 */
+            50% { background-color: #3B82F6; } /* Tailwind: blue-500 */
+        }
+        .blinking-button {
+            animation: blink-green-blue 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-4xl font-bold mb-4 sm:mb-0">Beginner's Course</h1>
+            <nav class="flex flex-col sm:flex-row gap-4">
+  <button onclick="window.location.href='../index.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+        home page
+    </button>
+    <button onclick="window.location.href='exam/be.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+        Take Exam
+    </button>
+    <button onclick="window.location.href='../app/index.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+        Practicals
+    </button>
+</nav>
+
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 mt-8">
+
+        <!-- Section 1: Introduction & Definitions -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-car"></i>
+                Introduction to Driving
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-6">
+                    Welcome to your first step toward getting your driver's license! This course provides all the foundational knowledge you need to become a safe and confident driver. From understanding the rules of the road to basic vehicle controls, we'll cover everything you need to know before you even get behind the wheel.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Learning to drive is a significant milestone that gives you independence and opens up new opportunities. We're here to guide you through every step of the process. Let's get started!
+                </p>
+            </div>
+
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-road"></i>
+                Key Driving Terms
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="term-item">
+                    <span class="term-number">1.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Blind Spot</p>
+                        <p class="text-gray-600">Areas around a vehicle that a driver cannot see using their mirrors. It's crucial to check these areas by turning your head before changing lanes.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">2.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Braking Distance</p>
+                        <p class="text-gray-600">The total distance a vehicle travels from the moment the brakes are applied until it comes to a complete stop.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">3.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Right of Way</p>
+                        <p class="text-gray-600">The legal right of a pedestrian or vehicle to proceed with priority over others in a particular situation.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">4.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">ABS (Anti-lock Braking System)</p>
+                        <p class="text-gray-600">A safety feature that prevents a vehicle's wheels from locking up and skidding during braking, allowing the driver to maintain steering control.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">5.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">U-Turn</p>
+                        <p class="text-gray-600">A turn that reverses a vehicle's direction, resembling the letter U.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">6.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Hydroplaning</p>
+                        <p class="text-gray-600">When a vehicle's tires lose contact with the road surface and ride on a layer of water, causing a loss of traction and control.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">7.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Tailgating</p>
+                        <p class="text-gray-600">Driving too closely behind another vehicle. This significantly reduces your reaction time and increases the risk of a collision.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">8.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Yield</p>
+                        <p class="text-gray-600">To let other drivers or pedestrians go first in a specific situation, such as at a yield sign or when merging.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">9.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Parallel Parking</p>
+                        <p class="text-gray-600">A method of parking a vehicle parallel to the curb, usually between two other parked vehicles.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">10.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Defensive Driving</p>
+                        <p class="text-gray-600">Driving in a way that uses safe strategies to anticipate and avoid potential hazards on the road.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Road Signs & Signals -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-traffic-light"></i>
+                Road Signs & Signals
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Road signs and signals are the language of the road. Understanding them is critical for safety and for navigating traffic correctly. They provide important information, warnings, and regulations. Mastering this information is the first step towards becoming a responsible driver.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Regulatory Signs:</strong> These signs, often in the shape of a rectangle or circle with red, white, or black colors, tell you what you can and cannot do. Examples include STOP, YIELD, ONE WAY, and DO NOT ENTER signs.</li>
+                    <li><strong>Warning Signs:</strong> Typically diamond-shaped and yellow or orange, these signs alert you to potential hazards or changing road conditions ahead. Common examples are sharp curve ahead, school zone, and deer crossing.</li>
+                    <li><strong>Guide Signs:</strong> These signs, usually green, blue, or brown, provide directional and informational guidance. They show you where you are, where you're going, and what services are available nearby, such as highway signs, street names, and rest area signs.</li>
+                    <li><strong>Traffic Signals:</strong> Traffic lights (red, yellow, green) tell you when to stop, slow down, and go. A red light means stop completely, a yellow light means slow down and prepare to stop, and a green light means you can proceed if the way is clear. Always be aware of pedestrians and other vehicles, even with a green light.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Basic Vehicle Controls -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-tachometer-alt"></i>
+                Basic Vehicle Controls
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Before you drive, you must know what all the controls do. It's important to familiarize yourself with their location and function before you start the engine.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Steering Wheel:</strong> This is used to control the direction of the vehicle. Always keep two hands on the wheel in a comfortable position, typically at 10 and 2 or 9 and 3 o'clock.</li>
+                    <li><strong>Gas Pedal (Accelerator):</strong> Increases speed. Press gently to accelerate smoothly. Pushing too hard can cause the car to lurch forward.</li>
+                    <li><strong>Brake Pedal:</strong> Decreases speed or stops the vehicle. Press firmly but smoothly to avoid sudden stops. Use your right foot for both the gas and brake pedals.</li>
+                    <li><strong>Clutch Pedal (Manual Transmission):</strong> Disengages the engine from the wheels to allow for gear changes. This pedal is only found in manual cars and is operated with your left foot.</li>
+                    <li><strong>Gear Selector (Automatic):</strong> For automatic cars, the gear selector has a few key positions: P (Park), R (Reverse), N (Neutral), and D (Drive). Make sure you're in the correct gear before you start moving.</li>
+                    <li><strong>Turn Signals:</strong> Used to indicate your intention to turn or change lanes. Always use your turn signals well in advance to give other drivers time to react.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 4: Rules of the Road -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-gavel"></i>
+                Rules of the Road
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    These are fundamental rules that keep traffic flowing safely. They are designed to prevent accidents and ensure a predictable driving environment for everyone.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Speed Limits:</strong> Always obey the posted speed limits. They are set for your safety and the safety of others. Driving too fast reduces your reaction time and increases the severity of a crash.</li>
+                    <li><strong>Seat Belts:</strong> Always wear your seat belt. It is the single most effective way to prevent injury or death in a crash. Ensure all passengers are also buckled up.</li>
+                    <li><strong>Following Distance:</strong> Maintain a safe distance between your car and the one in front of you. A good rule of thumb is the "three-second rule." Choose a fixed object, and when the car in front passes it, you should count at least three seconds before your car reaches the same object.</li>
+                    <li><strong>Lane Discipline:</strong> Drive in the correct lane and only change lanes when it is safe to do so. Use your mirrors and turn signals, and check your blind spots before moving.</li>
+                    <li><strong>Passing:</strong> Pass other vehicles only where it is legal and safe, and never on the right unless the vehicle you are passing is turning left.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Safe Driving Practices -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-shield-alt"></i>
+                Safe Driving Practices
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Being a safe driver is about more than just knowing the rules; it's about having a defensive mindset and being constantly aware of your surroundings.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Defensive Driving:</strong> Always be aware of your surroundings and anticipate what other drivers might do. Look for potential hazards like pedestrians, cyclists, or other drivers making unpredictable moves.</li>
+                    <li><strong>Avoid Distractions:</strong> Never use your phone, eat, or engage in other activities that take your attention away from the road. Distracted driving is a leading cause of accidents.</li>
+                    <li><strong>Check Mirrors:</strong> Constantly check your rearview and side mirrors to be aware of what's happening around your vehicle. This is especially important before braking, turning, or changing lanes.</li>
+                    <li><strong>Adjust to Conditions:</strong> Slow down and increase your following distance in bad weather like rain, fog, or snow. The road surface can be unpredictable, and you need more time to react.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: Parking & Maneuvering -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-parking"></i>
+                Parking & Maneuvering
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Parking can be one of the trickiest parts of learning to drive. Mastering these maneuvers is essential for the practical driving exam.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Parallel Parking:</strong> A method of parking a vehicle parallel to the curb, usually between two other parked vehicles. This requires practice and a good understanding of your vehicle's dimensions.</li>
+                    <li><strong>Reverse Parking:</strong> Backing into a parking spot, often considered safer and easier when leaving the spot. It gives you better visibility when you're pulling out.</li>
+                    <li><strong>Three-Point Turn:</strong> A technique used to turn a vehicle around in a confined space where a U-turn is not possible. This is a common maneuver on a driving test.</li>
+                    <li><strong>Hill Parking:</strong> Proper technique to park on a hill, including how to use your wheels to prevent the car from rolling. Always turn your wheels and use your parking brake when parking on a slope.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 7: Vehicle Maintenance -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-tools"></i>
+                Basic Vehicle Maintenance
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    A responsible driver knows how to perform basic checks on their vehicle. Performing these simple checks can prevent bigger problems down the road and keep you safe.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Tire Pressure:</strong> Check your tire pressure regularly, especially before a long trip. Underinflated tires are a safety hazard and can reduce fuel efficiency.</li>
+                    <li><strong>Oil Level:</strong> Know how to check your engine's oil level and when to get an oil change. Low oil can cause serious damage to your engine.</li>
+                    <li><strong>Brakes:</strong> Listen for any unusual sounds when braking, which could indicate a problem with your brake pads or rotors. If your brakes feel spongy or you hear grinding noises, have them checked immediately.</li>
+                    <li><strong>Lights:</strong> Ensure your headlights, brake lights, and turn signals are all working properly. It's a quick check that ensures other drivers can see your intentions on the road.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 8: Dealing with Emergencies -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                Dealing with Emergencies
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Knowing how to react in an emergency can save lives. It's important to have a plan and stay calm under pressure.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Flat Tire:</strong> Know how to safely pull over to a flat, safe surface away from traffic to change a flat tire. Make sure you have the necessary tools in your trunk.</li>
+                    <li><strong>Breakdown:</strong> If your car breaks down, pull over to a safe spot, turn on your hazard lights, and call for assistance. Stay inside your vehicle with your seatbelt on and doors locked.</li>
+                    <li><strong>Accident:</strong> In the event of an accident, stay calm, check for injuries to yourself and others, and call the authorities if necessary. Do not admit fault or get into a heated discussion with the other driver.</li>
+                    <li><strong>Skidding:</strong> If your car skids, steer in the direction of the skid to regain control. For example, if the back of your car skids to the right, steer your wheels to the right.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 9: Special Driving Conditions -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-cloud-sun-rain"></i>
+                Driving in Special Conditions
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Driving requires extra caution in certain conditions. Your awareness and driving habits should change to account for the reduced visibility or traction.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Rain:</strong> Slow down, increase your following distance, and turn on your headlights. Watch for hydroplaning, which occurs when a layer of water builds up between your tires and the road, causing a loss of traction.</li>
+                    <li><strong>Night:</strong> Use your high beams when no other vehicles are approaching, and avoid staring into oncoming headlights. Look to the right side of the road to avoid being temporarily blinded.</li>
+                    <li><strong>Fog:</strong> Use your low beams and fog lights. Never use high beams as they will reflect back and reduce visibility. In thick fog, pull over safely and wait for conditions to improve.</li>
+                    <li><strong>Hills:</strong> Use a lower gear when going up or down steep hills to help the engine and brakes. This is known as engine braking and helps you maintain control.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 10: Final Reminders -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-graduation-cap"></i>
+                Final Reminders
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Congratulations on making it through the theoretical part of the course! Here are a few final thoughts to keep in mind as you move on to practicals and eventually, getting your license.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Practice Makes Perfect:</strong> The best way to become a safe and confident driver is to practice regularly with a qualified instructor. The more time you spend behind the wheel, the more natural it will become.</li>
+                    <li><strong>Stay Calm:</strong> Driving can be stressful at first. Stay calm, breathe, and focus on one task at a time. Road rage is dangerous; focus on your own driving and don't let other drivers' behavior affect you.</li>
+                    <li><strong>Enjoy the Journey:</strong> Driving gives you freedom and the ability to explore. Enjoy the process of becoming a skilled driver!</li>
+                    <li><strong>Always Be Learning:</strong> Even after you get your license, continue to learn and stay up-to-date with traffic laws. Driving is a skill that requires lifelong learning.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Centered blinking button -->
+        <div class="flex justify-center mt-6">
+            <button onclick="window.location.href='../app/index.html'" class="py-4 px-8 rounded-full text-white font-bold text-lg blinking-button shadow-lg transition-all duration-300 hover:scale-105">
+    Click here for Practicals
+</button>
+
+        </div>
+
+    </main>
+
+    <!-- Message Box for Button Clicks -->
+    <div id="message-box" class="message-box">
+        <p id="message-text" class="text-xl font-medium"></p>
+        <button onclick="closeMessageBox()" class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-indigo-700 transition-colors">
+            Close
+        </button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 text-gray-600 py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Designed by Peter Mayende</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for button functionality -->
+    <script>
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+
+        function openPage(pageName) {
+            messageText.textContent = `You clicked the '${pagname.replace('-', ' ')}' button. This would open a new page!`;
+            messageBox.classList.add('show');
+        }
+
+        function closeMessageBox() {
+            messageBox.classList.remove('show');
+        }
+    </script>
+
+</body>
+</html>

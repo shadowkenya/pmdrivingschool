@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defensive Driving</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .section-header {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header i {
+            font-size: 2.5rem;
+            color: #6366f1;
+        }
+        .term-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .term-number {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #4b5563;
+            width: 2rem;
+            text-align: center;
+        }
+        .term-definition {
+            flex-grow: 1;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            max-width: 90%;
+        }
+        .message-box.show {
+            display: flex;
+        }
+        @keyframes blink-green-blue {
+            0%, 100% { background-color: #10B981; } /* Tailwind: green-500 */
+            50% { background-color: #3B82F6; } /* Tailwind: blue-500 */
+        }
+        .blinking-button {
+            animation: blink-green-blue 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-4xl font-bold mb-4 sm:mb-0">Defensive Driving</h1>
+            <nav class="flex flex-col sm:flex-row gap-4">
+		 <button onclick="window.location.href='../index.html'" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+        home page
+    </button>
+                <a href="exam/de.html" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+    Take Exam
+</a>
+
+                <a href="../app/index.html" class="bg-white text-indigo-600 font-semibold py-2 px-6 rounded-full shadow-md transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+    Practicals
+</a>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 mt-8">
+
+        <!-- Section 1: Introduction to Defensive Driving -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-shield-alt"></i>
+                Introduction to Defensive Driving
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-6">
+                    Welcome to the Defensive Driving course. Unlike standard driving, defensive driving is a proactive approach that anticipates potential hazards and teaches you how to prevent accidents before they happen. It's about taking responsibility for your safety and the safety of those around you, regardless of what other drivers do.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    This course will help you develop the skills and mindset needed to stay safe on the road. By learning these techniques, you'll be able to react calmly and effectively to unexpected situations.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: Key Concepts -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-brain"></i>
+                Key Defensive Driving Concepts
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Understanding the core principles of defensive driving is the first step to mastering it.
+                </p>
+                <div class="term-item">
+                    <span class="term-number">1.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">The "What If" Mindset</p>
+                        <p class="text-gray-600">Continuously ask yourself "what if?" to anticipate hazards. For example, "What if the car in front of me suddenly brakes?" or "What if that pedestrian steps into the road?"</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">2.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">The "3-Second Rule"</p>
+                        <p class="text-gray-600">This is a fundamental rule for maintaining a safe following distance. Choose a fixed object on the road. When the vehicle ahead passes it, count three seconds. If you pass the same object before you finish counting, you are following too closely.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">3.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Space Management</p>
+                        <p class="text-gray-600">Always maintain a safe buffer of space around your vehicle—front, back, and sides. This "escape route" gives you room to maneuver and react to emergencies.</p>
+                    </div>
+                </div>
+                <div class="term-item">
+                    <span class="term-number">4.</span>
+                    <div class="term-definition">
+                        <p class="font-semibold text-xl">Scanning the Environment</p>
+                        <p class="text-gray-600">Don't just look at the car in front of you. Constantly scan the road ahead, your mirrors, and the sides of the road. Look for potential hazards, signs, and traffic changes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Safe Driving Habits -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-bullseye"></i>
+                Essential Defensive Driving Habits
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Building these habits will make you a more confident and safer driver.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Eliminate Distractions:</strong> Put your phone away, set your GPS before you start driving, and avoid eating or drinking behind the wheel. Distracted driving is a leading cause of accidents.</li>
+                    <li><strong>Be Seen:</strong> Drive with your low-beam headlights on, even during the day, to make your vehicle more visible to others.</li>
+                    <li><strong>Communicate Your Intentions:</strong> Use your turn signals well in advance of a turn or lane change. A simple signal can prevent a major collision.</li>
+                    <li><strong>Stay Calm:</strong> Don't let other drivers' aggressive behavior get to you. Avoid road rage and stay focused on your own driving.</li>
+                    <li><strong>Know Your Vehicle:</strong> Regularly check your tires, brakes, lights, and fluids. A well-maintained vehicle is a safer vehicle.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 4: Driving in Different Conditions -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-cloud-sun-rain"></i>
+                Handling Varying Conditions
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Defensive driving is crucial when conditions are less than ideal.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Rain and Wet Roads:</strong> Slow down and increase your following distance. Watch for **hydroplaning**, which is when your tires lose grip on the road.</li>
+                    <li><strong>Night Driving:</strong> Use your high beams on rural roads when no other cars are present. Look at the right side of your lane to avoid being blinded by oncoming headlights.</li>
+                    <li><strong>Fog:</strong> Use your low beams or fog lights. High beams reflect off the fog and reduce visibility. In thick fog, pull over to a safe location until conditions improve.</li>
+                    <li><strong>Rural Roads:</strong> Be aware of wildlife, sharp turns, and narrow lanes. Slow down and be prepared to stop unexpectedly.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Reacting to Emergencies -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                Emergency Maneuvers
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    Even with all the preparation, you might face an emergency. Knowing how to react is key to a safe outcome.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Skidding:</strong> If your car skids, take your foot off the gas and steer in the direction of the skid. For example, if the back of your car skids to the right, steer your wheels to the right.</li>
+                    <li><strong>Tire Blowout:</strong> Hold the steering wheel firmly, take your foot off the gas, and brake gently. Guide the car to a safe spot on the side of the road.</li>
+                    <li><strong>Brake Failure:</strong> Pump the brake pedal rapidly and downshift to a lower gear to use engine braking. Use the parking brake to slow down.</li>
+                    <li><strong>Swerving:</strong> If you need to swerve to avoid a hazard, look in the direction you want to go and turn the wheel smoothly. Avoid over-correcting, which can cause you to lose control.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: Putting it all into Practice -->
+        <div>
+            <h2 class="text-3xl font-semibold section-header">
+                <i class="fas fa-graduation-cap"></i>
+                Putting it into Practice
+            </h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg leading-relaxed mb-4">
+                    The best way to master defensive driving is through conscious practice.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
+                    <li><strong>Daily Practice:</strong> Make defensive driving a habit every time you get behind the wheel. Practice scanning the road, maintaining space, and anticipating others' actions.</li>
+                    <li><strong>Stay Updated:</strong> Road laws and technology change. Stay informed by checking your local DMV or transportation authority's website for updates.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Centered blinking button -->
+        <div class="flex justify-center mt-6">
+            <button onclick="openPage('practicals')" class="py-4 px-8 rounded-full text-white font-bold text-lg blinking-button shadow-lg transition-all duration-300 hover:scale-105">
+                Click here for Practicals
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Message Box for Button Clicks -->
+    <div id="message-box" class="message-box">
+        <p id="message-text" class="text-xl font-medium"></p>
+        <button onclick="closeMessageBox()" class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-indigo-700 transition-colors">
+            Close
+        </button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 text-gray-600 py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Designed by Peter Mayende</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for button functionality -->
+    <script>
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+
+        function openPage(pageName) {
+            messageText.textContent = `You clicked the '${pageName.replace('-', ' ')}' button. This would open a new page!`;
+            messageBox.classList.add('show');
+        }
+
+        function closeMessageBox() {
+            messageBox.classList.remove('show');
+        }
+    </script>
+
+</body>
+</html>
